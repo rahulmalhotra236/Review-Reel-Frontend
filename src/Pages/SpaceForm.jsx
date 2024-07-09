@@ -27,7 +27,7 @@ const SpaceForm = () => {
             data.map((space, index) => (
               <li key={index} className="mb-2">
                 <span className="font-bold">
-                  <a href="#">{space.spaceName}</a>
+                  <a href={`/products/${space.spaceName}`}>{space.spaceName}</a>
                 </span>
               </li>
             ))

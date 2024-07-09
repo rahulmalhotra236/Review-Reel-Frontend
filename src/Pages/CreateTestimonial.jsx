@@ -8,11 +8,39 @@ const CreateTestimonial = () => {
   const [showCreateTest, setShowCreateTest] = useState(false)
   const [showSendSuccess, setShowSendSuccess] = useState(false)
 
-  const handleSend = () => {
+  const [formData, setFormData] = useState({
+    yourTestimonial: "",
+    yourName: "",
+    yourEmail: "",
+  })
+     const handleInputChange = (e) => {
+       const { name, value } = e.target
+       setFormData({ ...formData, [name]: value })
+     }
+  
+
+const handleSend = async (e) => {
+  e.preventDefault() // Prevent default form submission
+
+  try {
+    const response = await axiosinstance.post(
+      `/testimonial/${spaceName}/create-testimonial`,
+      formData
+    )
+    console.log(response.data)
     setShowCreateTest(false)
     setShowSendSuccess(true)
     console.log("Send")
+  } catch (error) {
+    if (error.response) {
+      console.error("Server Error:", error.response.data)
+    } else if (error.request) {
+      console.error("Request Error:", error.request)
+    } else {
+      console.error("Error:", error.message)
+    }
   }
+}
 
   useEffect(() => {
     const fetchData = async () => {
@@ -57,13 +85,20 @@ const CreateTestimonial = () => {
       )}
 
       {showCreateTest && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" >
+        <form
+          method="post"
+
+          onSubmit={handleSend}
+          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+        >
           <div className="bg-white w-1/3 h-4/5 flex flex-col p-10 gap-4 rounded-lg shadow-xl border border-gray-300">
             <div className="mb-4">
               <label htmlFor="message" className="block text-gray-700 mb-2">
                 Your Message
               </label>
               <textarea
+                name="yourTestimonial"
+                onChange={handleInputChange}
                 id="message"
                 className="h-32 w-full p-2 rounded-lg border border-gray-300"
               ></textarea>
@@ -73,7 +108,9 @@ const CreateTestimonial = () => {
                 Your Name *
               </label>
               <input
+                name="yourName"
                 type="text"
+                onChange={handleInputChange}
                 id="name"
                 className="w-full p-2 rounded-lg border border-gray-300"
               />
@@ -83,7 +120,9 @@ const CreateTestimonial = () => {
                 Your Email *
               </label>
               <input
+                name="yourEmail"
                 type="email"
+                onChange={handleInputChange}
                 id="email"
                 className="w-full p-2 rounded-lg border border-gray-300"
               />
@@ -95,19 +134,16 @@ const CreateTestimonial = () => {
               >
                 Cancel
               </button>
-              <button
-                className="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition duration-300"
-                onClick={handleSend}
-              >
+              <button type="submit" className="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition duration-300">
                 Send
               </button>
             </div>
           </div>
-        </div>
+        </form>
       )}
 
       {showSendSuccess && (
-        <form className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-8 rounded-lg shadow-xl max-w-sm w-full text-center">
             <h2 className="text-2xl font-semibold text-gray-800 mb-4">
               Thank you!
@@ -122,7 +158,7 @@ const CreateTestimonial = () => {
               Close
             </button>
           </div>
-        </form>
+        </div>
       )}
     </div>
   )
