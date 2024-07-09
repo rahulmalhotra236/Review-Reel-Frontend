@@ -37,7 +37,11 @@ const NewSpace = () => {
 
 
   return (
-    <form action="#" onSubmit={handleSpaceData} method="post">
+    <form
+      action={`/space-created/${formData.spaceName}`}
+      onSubmit={handleSpaceData}
+      method="post"
+    >
       <div className="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
         <h2 className="text-2xl font-bold mb-6 text-center">
           Create a New Space
