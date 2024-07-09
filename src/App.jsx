@@ -17,6 +17,7 @@ function App() {
         <Route path="/new-space" element={<NewSpace/>} /> 
         <Route path="/space-created/:spaceName" element={<SpaceCreated/>} /> 
         <Route path="/:spaceName" element={<CreateTestimonial/>} /> 
+        <Route path="/products/:spaceName" element={<CreateTestimonial/>} /> 
       </Routes>
      
     </>
