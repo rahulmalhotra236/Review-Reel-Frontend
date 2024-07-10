@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 import axiosInstance from "../../utils/axiosInstance"
+import Navbar from "../components/Navbar"
 
 const SpaceForm = () => {
+  const navigate = useNavigate()
     const [data, setData] = useState([])
 
     useEffect(() => {
@@ -17,32 +20,50 @@ const SpaceForm = () => {
 
       fetchData()
     }, [])
+  const handleNewSpaceButton = () => {
+    navigate("/new-space")
+  }
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="bg-white p-6 rounded-lg shadow-md">
-        <h2 className="text-2xl mb-4">All Spaces</h2>
-        <ul>
-          {data.length > 0 ? (
-            data.map((space, index) => (
-              <li key={index} className="mb-2">
-                <span className="font-bold">
-                  <a href={`/products/${space.spaceName}`}>{space.spaceName}</a>
-                </span>
-              </li>
-            ))
-          ) : (
-            <li>No spaces found.</li>
-          )}
-        </ul>
-        <form action="/new-space">
+    <div className="flex flex-col  gap-20 min-h-screen bg-[#151719] px-20 py-5">
+     
+      <Navbar/>
+
+      <div className="w-5/6  mx-auto">
+        <div className="flex flex-col justify-center items-center md:flex-row md:justify-between ">
+          <h2 className="text-white text-5xl">Spaces</h2>
           <button
             htmlFor="space"
-            className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 mt-4"
+            onClick={handleNewSpaceButton}
+            className="bg-[#5C5CFC] text-white px-4 py-2  hover:bg-blue-800 mt-3 md:mt-0"
           >
-            New Space
+            + Create a new space
           </button>
-        </form>
+        </div>
+
+        <div className=" mt-10 w-full">
+          <div className="flex justify-center items-center p-6 ">
+            <ul className="flex flex-wrap gap-5">
+              {data.length > 0 ? (
+                data.map((space, index) => (
+                  <li
+                    onClick={() => navigate(`/products/${space.spaceName}`)}
+                    key={index}
+                    className="bg-[#25282C] p-5 border-[.1px] border-white text-xl mb-5 text-3xl rounded-sm w-80 font-semibold cursor-pointer font-light text-white rounded-md"
+                  >
+                    <span>
+                      <a href={`/products/${space.spaceName}`}>
+                        {space.spaceName}
+                      </a>
+                    </span>
+                  </li>
+                ))
+              ) : (
+                <li>No spaces found.</li>
+              )}
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   )
