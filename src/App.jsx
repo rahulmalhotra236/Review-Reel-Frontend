@@ -1,7 +1,7 @@
 
 
 
-import { Route, Routes } from "react-router-dom"
+import { Route, Routes, useNavigate } from "react-router-dom"
 import "./App.css"
 import CreateTestimonial from "./Pages/CreateTestimonial"
 import NewSpace from "./Pages/NewSpace"
@@ -10,15 +10,19 @@ import SpaceCreated from "./Pages/SpaceCreated"
 import SpaceForm from "./Pages/SpaceForm"
 
 function App() {
+  const navigate= useNavigate()
   return (
     <>
       
       <Routes>
+        <Route path="/dashboard" element={<SpaceForm/>} /> 
         <Route path="/" element={<SpaceForm/>} /> 
         <Route path="/new-space" element={<NewSpace/>} /> 
         <Route path="/space-created/:spaceName" element={<SpaceCreated/>} /> 
         <Route path="/:spaceName" element={<CreateTestimonial/>} /> 
-        <Route path="/products/:spaceName" element={<ShowSpaceData/>} /> 
+        <Route path="/products/:spaceName" element={<ShowSpaceData />} /> 
+
+        
       </Routes>
      
     </>

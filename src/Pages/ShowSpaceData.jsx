@@ -45,18 +45,18 @@ const ShowSpaceData = () => {
         </div>
       </div>
 
-      <div className="flex w-full  p-6">
-        <div className="w-1/2 cursor-pointer text-xl font-semibold text-white ">
+      <div className="flex flex-col md:flex-row justify-center items-center md:items-start w-full  p-6">
+        <div className="w-1/2 cursor-pointer text-xl font-semibold mb-10 text-white ">
           Wall of Love
         </div>
-        <div className="w-full  flex md:flex-col gap-10   text-gray-400">
+        <div className="w-full   md:flex-col gap-10  text-gray-400">
           {data ? (
             data.map((d, index) => (
-              <div key={index} className=" p-10 shadow rounded-lg bg-[#292C30]">
+              <div key={index} className=" p-10 mb-10 shadow rounded-lg bg-[#292C30]">
                 <p className="text-gray-200">{d.yourTestimonial}</p>
                 <br />
-                <div className="flex md:justify-between w-1/2">
-                  <div>
+                <div className="flex md:justify-between flex-wrap w-1/2">
+                  <div className="mb-2 mr-2">
                     <p>Name</p>
                     <p>{d.yourName}</p>
                   </div>

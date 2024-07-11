@@ -7,7 +7,8 @@ const SpaceForm = () => {
   const navigate = useNavigate()
     const [data, setData] = useState([])
 
-    useEffect(() => {
+  useEffect(() => {
+      navigate("/dashboard")
       const fetchData = async () => {
         try {
           const response = await axiosInstance.get("/dashboard")
