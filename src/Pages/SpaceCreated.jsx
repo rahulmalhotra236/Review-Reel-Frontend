@@ -7,8 +7,10 @@ const SpaceCreated = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-      <div className="bg-white p-8 rounded shadow-lg max-w-lg w-full text-center">
-        <h1 className="text-2xl font-bold mb-4">Added successfully 🥳</h1>
+      <div className="bg-white px-12 py-10 rounded shadow-lg max-w-lg w-full text-center">
+        <h1 className="text-xl font-semibold mb-4">
+          Added space name successfully 🥳
+        </h1>
         <p className="text-gray-700 mb-4">
           Here is the link for your customers:
         </p>
@@ -18,8 +20,10 @@ const SpaceCreated = () => {
         <div className="mt-6">
           <button
             onClick={() => setShowCreateTestimonial(!showCreateTestimonial)}
-            className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300"
+            // className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300"
+            className="bg-[#5C5CFC] hover:bg-[#4646dd] text-white  md:px-4 md:py-2  rounded-lg cursor-pointer transition duration-300 w-full"
           >
+            {" "}
             Close
           </button>
         </div>

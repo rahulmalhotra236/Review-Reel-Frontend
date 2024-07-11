@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import axiosinstance from "../../utils/axiosInstance"
+import Navbar from "../components/Navbar"
 
 const CreateTestimonial = () => {
   const [data, setData] = useState(null)
@@ -61,21 +62,18 @@ const handleSend = async (e) => {
   }, [data])
 
   return (
-    <div className="min-h-screen bg-gray-400 flex items-center justify-center p-4">
+    <div className="min-h-screen  flex items-center justify-center p-4">
       {data ? (
-        <div className="w-1/2 bg-white border rounded-lg p-10 flex flex-col justify-center gap-20 items-center">
-          <div className="flex flex-col items-center gap-5">
-            <h1 className="text-3xl font-bold mb-4 text-gray-800">
-              {data.spaceName}
-            </h1>
-            <h3 className="text-gray-700 font-bold text-4xl">
+        <div className=" bg-white  flex md:flex-col justify-center gap-24 items-center">
+          <div className="flex flex-col items-center gap-8">
+            <h3 className="text-gray-700 font-bold text-7xl">
               {data.headerTitle}
             </h3>
             <p className="text-gray-400">{data.yourCustomMessage}</p>
           </div>
           <div>
             <butto
-              className="bg-[#5C5CFC] text-white md:px-6 md:py-4 md:w-full   cursor-pointer text-base p-2"
+              className="bg-[#5C5CFC] text-white  md:px-6 md:py-4 md:w-full   cursor-pointer text-base p-2"
               onClick={() => setShowCreateTest(true)}
             >
               Create Testimonial
@@ -152,14 +150,15 @@ const handleSend = async (e) => {
             </div>
             <div className="flex justify-end gap-2">
               <button
-                className="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 transition duration-300"
+                className=" text-gray-800 hover:bg-gray-200 py-2 px-4 rounded-lg  transition duration-300 border"
                 onClick={() => setShowCreateTest(false)}
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition duration-300"
+                // className="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition duration-300"
+                className="bg-[#5C5CFC] hover:bg-[#4646dd] text-white  md:px-4 md:py-2  rounded-lg cursor-pointer transition duration-300"
               >
                 Send
               </button>
@@ -170,7 +169,7 @@ const handleSend = async (e) => {
 
       {showSendSuccess && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-8 rounded-lg shadow-xl max-w-sm w-full text-center">
+          <div className="bg-white p-8 rounded-lg shadow-xl max-w-xl h-96 w-full text-center">
             <h2 className="text-2xl font-semibold text-gray-800 mb-4">
               Thank you!
             </h2>
@@ -178,7 +177,7 @@ const handleSend = async (e) => {
               Thank you so much for your shoutout! It means a ton for us! 🙏
             </p>
             <button
-              className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-300"
+              className=" text-gray-800 bg-gray-50  hover:bg-gray-100 py-2 px-4 rounded-lg  transition duration-300 border-2 w-full shadow-sm"
               onClick={() => setShowSendSuccess(false)}
             >
               Close
