@@ -41,9 +41,11 @@ const NewSpace = () => {
       <div className="w-1/2 border rounded-lg p-10 flex flex-col justify-center gap-20 items-center">
         <div className="flex flex-col items-center gap-5">
           <h3 className="text-gray-700 font-bold text-4xl">
-            Header goes here...
+            {formData.headerTitle || "Header goes here..."}
           </h3>
-          <p className="text-gray-400">Your custom message goes here...</p>
+          <p className="text-gray-400">
+            {formData.yourCustomMessage || "Header goes here..."}
+          </p>
         </div>
         <div>
           <butto className="bg-[#5C5CFC] text-white px-6 py-4 w-full  cursor-pointer">
@@ -118,9 +120,9 @@ const NewSpace = () => {
 
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-300"
+            className=" transition duration-300 w-full bg-[#5C5CFC] text-white px-4 py-2  hover:bg-blue-800 mt-3 md:mt-0"
           >
-            Create Space
+            Create new Space
           </button>
         </div>
       </form>
