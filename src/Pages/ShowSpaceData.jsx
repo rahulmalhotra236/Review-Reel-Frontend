@@ -4,10 +4,13 @@ import { useEffect } from "react"
 import { useParams } from "react-router-dom"
 import axiosinstance from "../../utils/axiosInstance"
 import Navbar from "../components/Navbar"
+import { FaRegHeart } from "react-icons/fa"
+import { FaHeart } from "react-icons/fa"
 
 const ShowSpaceData = () => {
   const { spaceName } = useParams()
   const [data, setData] = useState([])
+  const [heartButton, setHeartButton] = useState(false)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,6 +23,13 @@ const ShowSpaceData = () => {
 
     fetchData()
   }, [spaceName])
+
+  const toggleHeart = (index) => {
+    const updatedData = data.map((d, i) =>
+      i === index ? { ...d, liked: !d.liked } : d
+    )
+    setData(updatedData)
+  }
 
   return (
     <div className="flex flex-col  gap-20 min-h-screen bg-[#151719] px-20 py-5">
@@ -52,8 +62,20 @@ const ShowSpaceData = () => {
         <div className="w-full   md:flex-col gap-10  text-gray-400">
           {data ? (
             data.map((d, index) => (
-              <div key={index} className=" p-10 mb-10 shadow rounded-lg bg-[#292C30]">
-                <p className="text-gray-200">{d.yourTestimonial}</p>
+              <div
+                key={index}
+                className=" p-10 mb-10 shadow rounded-lg bg-[#292C30]"
+              >
+                <div className="flex justify-between">
+                  <p className="text-gray-200">{d.yourTestimonial}</p>
+                  <button onClick={()=>toggleHeart(index)}>
+                    {d.liked ? (
+                      <FaHeart className="text-2xl cursor-pointer text-red-500" />
+                    ) : (
+                      <FaRegHeart className="text-2xl cursor-pointer text-red-500" />
+                    )}
+                  </button>
+                </div>
                 <br />
                 <div className="flex md:justify-between flex-wrap w-1/2">
                   <div className="mb-2 mr-2">
