@@ -11,6 +11,7 @@ const ShowSpaceData = () => {
   const { spaceName } = useParams()
   const [data, setData] = useState([])
   const [heartButton, setHeartButton] = useState(false)
+  const [wallPreview, setWallPreview] = useState(false)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,6 +32,10 @@ const ShowSpaceData = () => {
     setData(updatedData)
   }
 
+  const handleWallPreview = () => {
+    setWallPreview(true)
+  }
+
   return (
     <div className="flex flex-col  gap-20 min-h-screen bg-[#151719] px-20 py-5">
       <Navbar />
@@ -41,7 +46,7 @@ const ShowSpaceData = () => {
             <h1 className="text-white text-4xl font-bold mb-2">{spaceName}</h1>
             <p className="text-white text-gray-400">
               Space public URL:
-              <a href="#" className="underline">
+              <a href={`/${spaceName}`} className="underline">
                 LINK
               </a>
             </p>
@@ -56,8 +61,11 @@ const ShowSpaceData = () => {
       </div>
 
       <div className="flex flex-col md:flex-row justify-center items-center md:items-start w-full  p-6">
-        <div className="w-1/2 cursor-pointer text-xl font-semibold mb-10 text-white ">
-          Wall of Love
+        <div
+          className="w-1/2 flex items-center  cursor-pointer text-xl font-semibold mb-10 text-white"
+          onClick={handleWallPreview}
+        >
+          <FaRegHeart className="mr-2" /> Wall of Love
         </div>
         <div className="w-full   md:flex-col gap-10  text-gray-400">
           {data ? (
@@ -68,7 +76,7 @@ const ShowSpaceData = () => {
               >
                 <div className="flex justify-between">
                   <p className="text-gray-200">{d.yourTestimonial}</p>
-                  <button onClick={()=>toggleHeart(index)}>
+                  <button onClick={() => toggleHeart(index)}>
                     {d.liked ? (
                       <FaHeart className="text-2xl cursor-pointer text-red-500" />
                     ) : (
@@ -92,6 +100,35 @@ const ShowSpaceData = () => {
                   <p>Submitted at</p>
                   <p>1/2/2002</p>
                 </div>
+                  {wallPreview ? (
+                <div className="fixed top-1/4 left-1/4 rounded-xl bg-white w-1/2 h-1/2 p-10">
+                    <div className="flex items-center justify-center flex-col gap-5">
+                      <h2 className="text-black font-bold text-3xl">
+                        Embed a Wall of Love
+                      </h2>
+                      <p>Customize your Wall of Love</p>
+
+                      <div className="w-full">
+                        <textarea className="w-full h-20 border border-2 rounded-md" />
+                      </div>
+
+                      <div className="flex gap-5">
+                        <button
+                          className=" text-gray-800 hover:bg-gray-200 py-2 px-4 rounded-md  transition duration-300 border"
+                          onClick={() => setWallPreview(false)}
+                        >
+                          Close
+                        </button>
+                        <button className="bg-[#5C5CFC] hover:bg-[#4646dd] text-white  md:px-4 md:py-2  rounded-md cursor-pointer transition duration-300">
+                          Copy Code
+                        </button>
+                      </div>
+                    </div>
+                    </div>
+                  ) : (
+                    <div></div>
+                  )}
+
               </div>
             ))
           ) : (
