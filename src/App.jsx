@@ -22,7 +22,7 @@ function App() {
         <Route path="/space-created/:spaceName" element={<SpaceCreated/>} /> 
         <Route path="/:spaceName" element={<CreateTestimonial/>} /> 
         <Route path="/products/:spaceName" element={<ShowSpaceData />} /> 
-        <Route path="/testimonial-widget" element={<Testimonials />} /> 
+        <Route path="/testimonial-widget/:spaceName" element={<Testimonials />} /> 
 
         
       </Routes>
