@@ -131,7 +131,7 @@ const ShowSpaceData = () => {
                       <div className="w-full">
                         <textarea
                           className="w-full p-2 h-20 border border-2 rounded-md"
-                          value={`<iframe src="http://localhost:5173/testimonial-widget" width="300" height="150" frameborder="0"></iframe>`}
+                          value={`<iframe src="http://localhost:5173/testimonial-widget/${spaceName}" width="1024" height="150" frameborder="0"></iframe>`}
                         />
                       </div>
                       <div>
