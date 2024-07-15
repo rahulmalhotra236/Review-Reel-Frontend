@@ -27,12 +27,30 @@ const ShowSpaceData = () => {
     fetchData()
   }, [spaceName])
 
-  const toggleHeart = (index) => {
-    const updatedData = data.map((d, i) =>
-      i === index ? { ...d, liked: !d.liked } : d
-    )
-    setData(updatedData)
-  }
+ const toggleHeart = async (index) => {
+   const testimonial = data[index]
+   const updatedLiked = !testimonial.isLiked
+
+   try {
+     const response = await axiosinstance.put(
+       `/testimonial/${spaceName}/${testimonial._id}/update-like`,
+       {
+         isLiked: updatedLiked,
+       }
+     )
+     
+     console.log(response.data)
+
+     const updatedData = data.map((d, i) =>
+       i === index ? { ...d, isLiked: updatedLiked } : d
+     )
+
+     setData(updatedData)
+
+   } catch (error) {
+     console.error("Error updating testimonial:", error)
+   }
+ }
 
   const handleWallPreview = () => {
     setWallPreview(true)
@@ -79,7 +97,7 @@ const ShowSpaceData = () => {
                 <div className="flex justify-between">
                   <p className="text-gray-200">{d.yourTestimonial}</p>
                   <button onClick={() => toggleHeart(index)}>
-                    {d.liked ? (
+                    {d.isLiked ? (
                       <FaHeart className="text-2xl cursor-pointer text-red-500" />
                     ) : (
                       <FaRegHeart className="text-2xl cursor-pointer text-red-500" />
@@ -111,7 +129,7 @@ const ShowSpaceData = () => {
                       <p>Customize your Wall of Love</p>
 
                       <div className="w-full">
-                        <textarea 
+                        <textarea
                           className="w-full p-2 h-20 border border-2 rounded-md"
                           value={`<iframe src="http://localhost:5173/testimonial-widget" width="300" height="150" frameborder="0"></iframe>`}
                         />
