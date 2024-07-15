@@ -6,6 +6,8 @@ import axiosinstance from "../../utils/axiosInstance"
 import Navbar from "../components/Navbar"
 import { FaRegHeart } from "react-icons/fa"
 import { FaHeart } from "react-icons/fa"
+import Testimonial from "../../../server/models/testimonial.models"
+
 
 const ShowSpaceData = () => {
   const { spaceName } = useParams()
@@ -67,7 +69,7 @@ const ShowSpaceData = () => {
         >
           <FaRegHeart className="mr-2" /> Wall of Love
         </div>
-        <div className="w-full   md:flex-col gap-10  text-gray-400">
+        <div className="w-full md:flex-col gap-10  text-gray-400">
           {data ? (
             data.map((d, index) => (
               <div
@@ -100,8 +102,8 @@ const ShowSpaceData = () => {
                   <p>Submitted at</p>
                   <p>1/2/2002</p>
                 </div>
-                  {wallPreview ? (
-                <div className="fixed top-1/4 left-1/4 rounded-xl bg-white w-1/2 h-1/2 p-10">
+                {wallPreview ? (
+                  <div className="fixed top-1/4 left-1/4 rounded-xl bg-white w-1/2 h-1/2 p-10">
                     <div className="flex items-center justify-center flex-col gap-5">
                       <h2 className="text-black font-bold text-3xl">
                         Embed a Wall of Love
@@ -109,9 +111,45 @@ const ShowSpaceData = () => {
                       <p>Customize your Wall of Love</p>
 
                       <div className="w-full">
-                        <textarea className="w-full h-20 border border-2 rounded-md" />
+                        <textarea 
+                          className="w-full p-2 h-20 border border-2 rounded-md"
+                          value={`<iframe src="http://localhost:5173/testimonial-widget" width="300" height="150" frameborder="0"></iframe>`}
+                        />
                       </div>
-
+                      <div>
+                        <form>
+                          <div>
+                            <input
+                              type="checkbox"
+                              id="branding"
+                              className="mr-2 w-5"
+                            />
+                            <label htmlFor="branding" className="text-md">
+                              Remove Testimonial branding
+                            </label>
+                          </div>
+                          <div>
+                            <input
+                              type="checkbox"
+                              id="dark-theme"
+                              className="mr-2 w-5"
+                            />
+                            <label htmlFor="dark-theme" className="text-md">
+                              Dark Theme
+                            </label>
+                          </div>
+                          <div>
+                            <input
+                              type="checkbox"
+                              id="date"
+                              className="mr-2 w-5"
+                            />
+                            <label htmlFor="date" className="text-md">
+                              Hide the date
+                            </label>
+                          </div>
+                        </form>
+                      </div>
                       <div className="flex gap-5">
                         <button
                           className=" text-gray-800 hover:bg-gray-200 py-2 px-4 rounded-md  transition duration-300 border"
@@ -124,11 +162,10 @@ const ShowSpaceData = () => {
                         </button>
                       </div>
                     </div>
-                    </div>
-                  ) : (
-                    <div></div>
-                  )}
-
+                  </div>
+                ) : (
+                  <div></div>
+                )}
               </div>
             ))
           ) : (
