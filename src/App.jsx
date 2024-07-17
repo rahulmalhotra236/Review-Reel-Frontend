@@ -5,6 +5,7 @@ import { Route, Routes, useNavigate } from "react-router-dom"
 import "./App.css"
 import Testimonials from "./components/Testimonials"
 import CreateTestimonial from "./Pages/CreateTestimonial"
+import EditSpace from "./Pages/EditSpace"
 import NewSpace from "./Pages/NewSpace"
 import ShowSpaceData from "./Pages/ShowSpaceData"
 import SpaceCreated from "./Pages/SpaceCreated"
@@ -22,6 +23,7 @@ function App() {
         <Route path="/space-created/:spaceName" element={<SpaceCreated/>} /> 
         <Route path="/:spaceName" element={<CreateTestimonial/>} /> 
         <Route path="/products/:spaceName" element={<ShowSpaceData />} /> 
+        <Route path="/products/:spaceName/edit-testimonial" element={<EditSpace />} /> 
         <Route path="/testimonial-widget/:spaceName" element={<Testimonials />} /> 
 
         

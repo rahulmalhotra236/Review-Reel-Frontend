@@ -1,15 +1,17 @@
 import React from "react"
 import { useState } from "react"
 import { useEffect } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import axiosinstance from "../../utils/axiosInstance"
 import Navbar from "../components/Navbar"
 import { FaRegHeart } from "react-icons/fa"
 import { FaHeart } from "react-icons/fa"
+import { GoPencil } from "react-icons/go"
 import Testimonial from "../../../server/models/testimonial.models"
 
 
 const ShowSpaceData = () => {
+  const navigate = useNavigate()
   const { spaceName } = useParams()
   const [data, setData] = useState([])
   const [heartButton, setHeartButton] = useState(false)
@@ -73,8 +75,14 @@ const ShowSpaceData = () => {
           </div>
 
           <div>
-            <button className="bg-white rounded-md px-5 py-2">
-              Edit Space
+            <button
+              className="bg-white rounded-md px-5 py-2"
+              onClick={() => navigate(`/products/${spaceName}/edit-testimonial`)}
+            >
+              <div className="flex items-center">
+                <GoPencil className="mr-2 text-xl" />
+                Edit Space
+              </div>
             </button>
           </div>
         </div>
