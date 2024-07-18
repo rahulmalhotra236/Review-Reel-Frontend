@@ -16,7 +16,7 @@ const EditSpace = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axiosinstance.get(`dashboard/${spaceName}`)
+      const response = await axiosinstance.get(`/dashboard/${spaceName}`)
       console.log(response.data.space)
 
        setFormData({

@@ -55,11 +55,13 @@ const Testimonials = () => {
       {data.length > 0 ? (
         <Slider {...settings}>
           {data.map((d, index) => (
-            <div key={index} className="p-4 bg-white  rounded-lg shadow-md mx-2">
+
+            <div key={index} className="p-4 mx-2  bg-white  rounded-lg shadow-md ">
               <h1 className="text-2xl font-bold mb-2">{d.yourName}</h1>
               <p className="text-gray-700 mb-4">{d.yourTestimonial}</p>
               <p className="text-gray-500">{d.yourEmail}</p>
-            </div>
+              </div>
+
           ))}
         </Slider>
       ) : (

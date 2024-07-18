@@ -27,8 +27,7 @@ const SpaceForm = () => {
 
   return (
     <div className="flex flex-col  gap-20 min-h-screen bg-[#151719] px-20 py-5">
-     
-      <Navbar/>
+      <Navbar />
 
       <div className="w-5/6  mx-auto">
         <div className="flex flex-col justify-center items-center md:flex-row md:justify-between ">
@@ -60,7 +59,13 @@ const SpaceForm = () => {
                   </li>
                 ))
               ) : (
-                <li>No spaces found.</li>
+                <duv className="w-full flex  justify-center">
+                  <img
+                    src="https://testimonial.to/static/media/no-message.18de8749.svg"
+                    alt="No Space Found"
+                    className="w-2/5 "
+                  />
+                </duv>
               )}
             </ul>
           </div>

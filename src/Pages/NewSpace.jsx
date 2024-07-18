@@ -48,9 +48,9 @@ const NewSpace = () => {
           </p>
         </div>
         <div>
-          <butto className="bg-[#5C5CFC] text-white px-6 py-4 w-full  cursor-pointer">
+          <button className="bg-[#5C5CFC] text-white px-6 py-4 w-full  cursor-pointer">
             Send in text
-          </butto>
+          </button>
         </div>
       </div>
       <form
