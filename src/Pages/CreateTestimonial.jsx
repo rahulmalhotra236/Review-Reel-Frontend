@@ -72,12 +72,12 @@ const handleSend = async (e) => {
             <p className="text-gray-400">{data.yourCustomMessage}</p>
           </div>
           <div>
-            <butto
+            <button
               className="bg-[#5C5CFC] text-white  md:px-6 md:py-4 md:w-full   cursor-pointer text-base p-2"
               onClick={() => setShowCreateTest(true)}
             >
               Create Testimonial
-            </butto>
+            </button>
           </div>
         </div>
       ) : (
@@ -171,6 +171,7 @@ const handleSend = async (e) => {
       {showSendSuccess && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-8 rounded-lg shadow-xl max-w-xl h-96 w-full text-center">
+            <iframe src="https://giphy.com/embed/g9582DNuQppxC"   frameBorder="0" className="giphy-embed w-full h-1/2 pointer-events-none" ></iframe>
             <h2 className="text-2xl font-semibold text-gray-800 mb-4">
               Thank you!
             </h2>

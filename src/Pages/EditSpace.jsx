@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import toast, { Toaster } from "react-hot-toast"
 
 import { useNavigate, useParams } from "react-router-dom"
 import axiosinstance from "../../utils/axiosInstance"
@@ -48,11 +49,12 @@ const EditSpace = () => {
       console.log(`Error ${error}`)
     }
 
-    navigate(`/space-created/${formData.spaceName}`)
+    navigate(`/products/${formData.spaceName}`)
   }
 
   return (
     <div className=" mx-36 my-10 flex gap-16 shadow-2xl justify-center rounded-lg py-10 px-8">
+      <Toaster/>
       <div className="w-1/2 border rounded-lg p-10 flex flex-col justify-center gap-20 items-center">
         <div className="flex flex-col items-center gap-5">
           <h3 className="text-gray-700 font-bold text-4xl">
@@ -137,7 +139,7 @@ const EditSpace = () => {
           <button
             type="submit"
             className=" transition duration-300 w-full bg-[#5C5CFC] text-white px-4 py-2  hover:bg-blue-800 mt-3 md:mt-0"
-          >
+          onClick={()=>{toast.success("Updated Successfully")}}>
             Update Space
           </button>
         </div>
