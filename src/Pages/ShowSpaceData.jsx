@@ -8,6 +8,7 @@ import { FaRegHeart } from "react-icons/fa"
 import { FaHeart } from "react-icons/fa"
 import { GoPencil } from "react-icons/go"
 import Testimonial from "../../../server/models/testimonial.models"
+import toast, { Toaster } from "react-hot-toast"
 
 
 const ShowSpaceData = () => {
@@ -61,6 +62,7 @@ const ShowSpaceData = () => {
   return (
     <div className="flex flex-col  gap-20 min-h-screen bg-[#151719] px-20 py-5">
       <Navbar />
+      <Toaster />
 
       <div>
         <div className="flex justify-between items-center">
@@ -77,7 +79,9 @@ const ShowSpaceData = () => {
           <div>
             <button
               className="bg-white rounded-md px-5 py-2"
-              onClick={() => navigate(`/products/${spaceName}/edit-testimonial`)}
+              onClick={() =>
+                navigate(`/products/${spaceName}/edit-testimonial`)
+              }
             >
               <div className="flex items-center">
                 <GoPencil className="mr-2 text-xl" />
@@ -106,9 +110,23 @@ const ShowSpaceData = () => {
                   <p className="text-gray-200">{d.yourTestimonial}</p>
                   <button onClick={() => toggleHeart(index)}>
                     {d.isLiked ? (
-                      <FaHeart className="text-2xl cursor-pointer text-red-500" />
+                      <FaHeart
+                        className="text-2xl cursor-pointer text-red-500"
+                        onClick={() =>
+                          toast.success(
+                            "Removed from the Wall of Love successfully."
+                          )
+                        }
+                      />
                     ) : (
-                      <FaRegHeart className="text-2xl cursor-pointer text-red-500" />
+                      <FaRegHeart
+                        className="text-2xl cursor-pointer text-red-500"
+                        onClick={() =>
+                          toast.success(
+                            "Added to the Wall of Love successfully."
+                          )
+                        }
+                      />
                     )}
                   </button>
                 </div>

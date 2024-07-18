@@ -6,10 +6,10 @@ import axiosinstance from "../../utils/axiosInstance"
 const EditSpace = () => {
   const navigate = useNavigate()
   const { spaceName } = useParams()
-  const [data, setData] = useState([])
+
   const [formData, setFormData] = useState({
-    spaceName: `${data.spaceName}`,
-    headerTitle: ``,
+    spaceName: "",
+    headerTitle: "",
     yourCustomMessage: "",
   })
 
@@ -17,7 +17,7 @@ const EditSpace = () => {
     const fetchData = async () => {
       const response = await axiosinstance.get(`dashboard/${spaceName}`)
       console.log(response.data.space)
-      // setData(response.data.space)
+
        setFormData({
          spaceName: response.data.space.spaceName,
          headerTitle: response.data.space.headerTitle,
