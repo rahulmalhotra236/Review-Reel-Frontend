@@ -8,6 +8,8 @@ import CreateTestimonial from "./Pages/CreateTestimonial"
 import EditSpace from "./Pages/EditSpace"
 import NewSpace from "./Pages/NewSpace"
 import ShowSpaceData from "./Pages/ShowSpaceData"
+import SignIn from "./Pages/SignIn"
+import SignUp from "./Pages/SignUp"
 import SpaceCreated from "./Pages/SpaceCreated"
 import SpaceForm from "./Pages/SpaceForm"
 
@@ -17,6 +19,8 @@ function App() {
     <>
       
       <Routes>
+        <Route path="/signup" element={<SignUp/>} /> 
+        <Route path="/signin" element={<SignIn/>} /> 
         <Route path="/dashboard" element={<SpaceForm/>} /> 
         <Route path="/" element={<SpaceForm/>} /> 
         <Route path="/new-space" element={<NewSpace/>} /> 
