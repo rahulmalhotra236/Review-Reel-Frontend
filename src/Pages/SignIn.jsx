@@ -32,6 +32,7 @@ const SignIn = () => {
     } catch (err) {
       setError(err.response ? err.response.data.message : "Server error")
     }
+    navigate("/dashboard")
     
   }
 
@@ -39,9 +40,10 @@ const SignIn = () => {
     <div className="flex flex-col gap-20 min-h-screen bg-[#151719] px-20 py-5">
       <Navbar />
       <div className="flex justify-center flex-col items-center gap-10">
-        <h1 className="text-white font-bold text-3xl">Sign up for free 🤗</h1>
+        <h1 className="text-white font-bold text-3xl">Sign in for free 🤗</h1>
         <div className="w-1/3">
           <form
+          
             onSubmit={handleSubmit}
             className="flex justify-center flex-col gap-2 w-full"
           >
@@ -74,18 +76,18 @@ const SignIn = () => {
               type="submit"
               className="bg-[#5C5CFC] hover:bg-blue-800 h-12 text-white text-lg "
             >
-              Sign Up
+              Sign In
             </button>
             <br />
             {error && <p className="text-red-500 text-center">{error}</p>}
             {success && <p className="text-green-500 text-center">{success}</p>}
             <p className="text-slate-500 text-center">
-              Already have an account?{" "}
+              Don't have an account?{" "}
               <a
-                href="#"
+                href="/signup"
                 className="text-[#5C5CFC] cursor-pointer hover:text-white"
               >
-                Sign in
+                Sign up
               </a>{" "}
             </p>
           </form>

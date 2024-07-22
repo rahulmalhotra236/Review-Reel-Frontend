@@ -59,13 +59,16 @@ const SpaceForm = () => {
                   </li>
                 ))
               ) : (
-                <duv className="w-full flex  justify-center">
-                  <img
-                    src="https://testimonial.to/static/media/no-message.18de8749.svg"
-                    alt="No Space Found"
-                    className="w-2/5 "
-                  />
-                </duv>
+                <div className="flex flex-col gap-10 items-center">
+                  <div className="w-full flex  justify-center">
+                    <img
+                      src="https://testimonial.to/static/media/no-message.18de8749.svg"
+                      alt="No Space Found"
+                      className="w-2/5 "
+                    />
+                  </div>
+                  <p className="text-gray-500 text-xl">No space yet, add a new one?</p>
+                </div>
               )}
             </ul>
           </div>

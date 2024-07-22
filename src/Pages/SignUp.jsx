@@ -88,7 +88,7 @@ const SignUp = () => {
             <p className="text-slate-500 text-center">
               Already have an account?{" "}
               <a
-                href="#"
+                href="/signin"
                 className="text-[#5C5CFC] cursor-pointer hover:text-white"
               >
                 Sign in
