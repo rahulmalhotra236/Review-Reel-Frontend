@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { toast, Toaster } from "react-hot-toast"
 import { useNavigate } from "react-router-dom"
 import axiosinstance from "../../utils/axiosInstance"
 
@@ -14,10 +15,8 @@ const SignIn = () => {
   const [error, setError] = useState("")
   const [success, setSuccess] = useState("")
 
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value })
-    
   }
 
   const handleSubmit = async (e) => {
@@ -26,28 +25,28 @@ const SignIn = () => {
     setSuccess("")
 
     try {
+      toast.success("Signin Successful")
       const response = await axiosinstance.post("/auth/signin", formData)
+      console.log("Response:", response.data) // Add this line
       setSuccess(response.data.message)
       navigate("/dashboard")
     } catch (err) {
+      console.log("Error:", err) // Add this line
       setError(err.response ? err.response.data.message : "Server error")
     }
-    navigate("/dashboard")
-    
   }
 
   return (
     <div className="flex flex-col gap-20 min-h-screen bg-[#151719] px-20 py-5">
       <Navbar />
       <div className="flex justify-center flex-col items-center gap-10">
+        <Toaster />
         <h1 className="text-white font-bold text-3xl">Sign in for free 🤗</h1>
         <div className="w-1/3">
           <form
-          
             onSubmit={handleSubmit}
             className="flex justify-center flex-col gap-2 w-full"
           >
-           
             <label htmlFor="email" className="text-white">
               Email *
             </label>
