@@ -1,11 +1,12 @@
 import React from 'react'
+import { RxAvatar } from "react-icons/rx"
 
 const Navbar = () => {
   return (
 
       <nav className="flex justify-between items-center">
-        <h1 className="text-white text-2xl font-bold">Review Reel</h1>
-        <button className="bg-red-400 p-6 rounded-full"></button>
+        <a href='/dashboard' className="text-white text-2xl font-bold">Review Reel</a>
+        <RxAvatar className='text-white text-4xl cursor-pointer'/>
       </nav>
 
   )
