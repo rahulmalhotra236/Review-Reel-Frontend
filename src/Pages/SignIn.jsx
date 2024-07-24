@@ -5,7 +5,8 @@ import axiosinstance from "../../utils/axiosInstance"
 
 import Navbar from "../components/Navbar"
 
-const SignIn = () => {
+const SignIn = ({ setIsLoggedIn }) => {
+  // Accept setIsLoggedIn as a prop
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
     email: "",
@@ -29,6 +30,7 @@ const SignIn = () => {
       const response = await axiosinstance.post("/auth/signin", formData)
       console.log("Response:", response.data) // Add this line
       setSuccess(response.data.message)
+      setIsLoggedIn(true) // Set logged-in state
       navigate("/dashboard")
     } catch (err) {
       console.log("Error:", err) // Add this line

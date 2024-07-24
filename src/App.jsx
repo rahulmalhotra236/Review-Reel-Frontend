@@ -1,3 +1,4 @@
+// App.js
 import { useEffect, useState } from "react"
 import { Route, Routes, useNavigate } from "react-router-dom"
 import axiosinstance from "../utils/axiosInstance"
@@ -13,13 +14,13 @@ import SpaceCreated from "./Pages/SpaceCreated"
 import SpaceForm from "./Pages/SpaceForm"
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState()
+  const [isLoggedIn, setIsLoggedIn] = useState(null)
   const navigate = useNavigate()
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await axiosinstance("/dashboard")
+        const { data } = await axiosinstance.get("/dashboard")
         console.log(data)
         setIsLoggedIn(true)
       } catch (error) {
@@ -37,30 +38,33 @@ function App() {
 
   return (
     <>
-      {isLoggedIn ? (
-        <Routes>
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/dashboard" element={<SpaceForm />} />
-          <Route path="/new-space" element={<NewSpace />} />
-          <Route path="/space-created/:spaceName" element={<SpaceCreated />} />
-          <Route path="/:spaceName" element={<CreateTestimonial />} />
-          <Route path="/products/:spaceName" element={<ShowSpaceData />} />
-          <Route
-            path="/products/:spaceName/edit-testimonial"
-            element={<EditSpace />}
-          />
-          <Route
-            path="/testimonial-widget/:spaceName"
-            element={<Testimonials />}
-          />
-        </Routes>
-      ) : (
-        <Routes>
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/signin" element={<SignIn />} />
-        </Routes>
-      )}
+      <Routes>
+        <Route path="/signup" element={<SignUp />} />
+        <Route
+          path="/signin"
+          element={<SignIn setIsLoggedIn={setIsLoggedIn} />}
+        />
+        {isLoggedIn && (
+          <>
+            <Route path="/dashboard" element={<SpaceForm />} />
+            <Route path="/new-space" element={<NewSpace />} />
+            <Route
+              path="/space-created/:spaceName"
+              element={<SpaceCreated />}
+            />
+            <Route path="/:spaceName" element={<CreateTestimonial />} />
+            <Route path="/products/:spaceName" element={<ShowSpaceData />} />
+            <Route
+              path="/products/:spaceName/edit-testimonial"
+              element={<EditSpace />}
+            />
+            <Route
+              path="/testimonial-widget/:spaceName"
+              element={<Testimonials />}
+            />
+          </>
+        )}
+      </Routes>
     </>
   )
 }
