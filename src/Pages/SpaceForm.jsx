@@ -8,12 +8,13 @@ const SpaceForm = () => {
     const [data, setData] = useState([])
 
   useEffect(() => {
-      navigate("/dashboard")
+      
       const fetchData = async () => {
         try {
           const response = await axiosInstance.get("/dashboard")
           console.log("Response data:", response.data.space) // Add console.log to check the response structure
-          setData(response.data.space)
+          setData(response.data.spaces)
+          navigate("/dashboard")
         } catch (error) {
           console.error("Error fetching data:", error)
         }
