@@ -1,11 +1,26 @@
 import React, { useState } from "react"
 import { RxAvatar } from "react-icons/rx"
+import axiosinstance from "../../utils/axiosInstance"
+
+import {  useNavigate } from "react-router-dom"
 
 const Navbar = () => {
+    const navigate = useNavigate()
   const [dropdownOpen, setDropdownOpen] = useState(false)
+
 
   const handleToggleDropdown = () => {
     setDropdownOpen(!dropdownOpen)
+  }
+
+  const handleSignout = async () => {
+    try {
+      await axiosinstance.post("/auth/signout")
+        navigate("/signin")
+
+    } catch (error) {
+      console.error("Signout failed: ", error)
+    }
   }
 
   return (
@@ -33,12 +48,12 @@ const Navbar = () => {
               Settings
             </a>
             <div className="border-b border-b-slate-700 bg-bottom" />
-            <a
-              href="/signout"
-              className="block px-4 py-2 text-slate-300 hover:bg-[#33363A]"
+            <button
+              onClick={handleSignout}
+              className="block w-full text-left px-4 py-2 text-slate-300 hover:bg-[#33363A]"
             >
               Sign Out
-            </a>
+            </button>
           </div>
         )}
       </div>
