@@ -6,6 +6,8 @@ import Testimonials from "./components/Testimonials";
 import CreateTestimonial from "./Pages/CreateTestimonial";
 import EditSpace from "./Pages/EditSpace";
 import NewSpace from "./Pages/NewSpace";
+import Settings from "./Pages/Settings";
+import Setting from "./Pages/Settings";
 import ShowSpaceData from "./Pages/ShowSpaceData";
 import SignIn from "./Pages/SignIn";
 import SignUp from "./Pages/SignUp";
@@ -48,6 +50,7 @@ function App() {
             <Route path="/new-space" element={<NewSpace />} />
             <Route path="/space-created/:spaceName" element={<SpaceCreated />} />
             <Route path="/:spaceName" element={<CreateTestimonial />} />
+            <Route path="/settings" element={<Settings />} />
             <Route path="/products/:spaceName" element={<ShowSpaceData />} />
             <Route path="/products/:spaceName/edit-testimonial" element={<EditSpace />} />
           </>
