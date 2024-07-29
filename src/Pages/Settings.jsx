@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react"
-
 import Navbar from "../components/Navbar"
 import { CgProfile } from "react-icons/cg"
 import axiosinstance from "../../utils/axiosInstance"
@@ -8,13 +7,13 @@ const Settings = () => {
   const [firstName, setFirstName] = useState("")
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [success, setSuccess] = useState(null)
 
   useEffect(() => {
     const fetchProfile = async () => {
       try {
         const response = await axiosinstance.get("/auth/profile")
         setFirstName(response.data.user.firstName)
-
         setLoading(false)
       } catch (error) {
         setError("Failed to load profile data")
@@ -31,7 +30,14 @@ const Settings = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    // Add logic to save profile changes here
+    try {
+      const response = await axiosinstance.put("/auth/edit-profile", { firstName })
+      setSuccess("Profile updated successfully")
+      setError(null)
+    } catch (error) {
+      setError("Failed to update profile")
+      setSuccess(null)
+    }
   }
 
   if (loading) return <div>Loading...</div>
@@ -72,6 +78,8 @@ const Settings = () => {
               Save my profile
             </button>
           </form>
+          {success && <div className="text-green-500">{success}</div>}
+          {error && <div className="text-red-500">{error}</div>}
         </div>
       </div>
     </div>
