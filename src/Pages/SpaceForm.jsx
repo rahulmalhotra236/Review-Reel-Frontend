@@ -10,6 +10,7 @@ const SpaceForm = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      console.log("out")
       try {
         const response = await axiosInstance.get("/dashboard")
         console.log("Response data:", response.data.spaces) // Add console.log to check the response structure
@@ -55,7 +56,7 @@ const SpaceForm = () => {
         <div className="mt-10 w-full">
           <div className="flex justify-center items-center p-6">
             <ul className="flex flex-wrap gap-5">
-              {data.length > 0 ? (
+              {data && data.length > 0 ? (
                 data.map((space, index) => (
                   <li
                     key={index}
